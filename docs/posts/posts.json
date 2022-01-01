@@ -11,9 +11,9 @@
     ],
     "date": "2022-01-20",
     "categories": [],
-    "contents": "\r\nEste é o meu primeiro portifolio.\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2022-01-01T18:22:52-03:00",
+    "contents": "\r\nbold\r\nEste é o meu primeiro portifolio.\r\nriscado\r\natalho\r\ninserir formato código\r\nformatar um texto como código: usethis::use_git()\r\nlink site\r\ncomo colocar um link: Blog Curso-R\r\nimagens\r\nMeme do Drake falando…\r\n\r\n# aqui a gente coloca o códido em R\r\n1 + 1\r\n\r\n\r\n[1] 2\r\n\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\nTabela\r\n\r\n\r\nmpg\r\ncyl\r\ndisp\r\nhp\r\ndrat\r\nwt\r\nqsec\r\nvs\r\nam\r\ngear\r\ncarb\r\nHornet Sportabout\r\n18.7\r\n8\r\n360.0\r\n175\r\n3.15\r\n3.440\r\n17.02\r\n0\r\n0\r\n3\r\n2\r\nDuster 360\r\n14.3\r\n8\r\n360.0\r\n245\r\n3.21\r\n3.570\r\n15.84\r\n0\r\n0\r\n3\r\n4\r\nMerc 450SE\r\n16.4\r\n8\r\n275.8\r\n180\r\n3.07\r\n4.070\r\n17.40\r\n0\r\n0\r\n3\r\n3\r\nMerc 450SL\r\n17.3\r\n8\r\n275.8\r\n180\r\n3.07\r\n3.730\r\n17.60\r\n0\r\n0\r\n3\r\n3\r\nMerc 450SLC\r\n15.2\r\n8\r\n275.8\r\n180\r\n3.07\r\n3.780\r\n18.00\r\n0\r\n0\r\n3\r\n3\r\nCadillac Fleetwood\r\n10.4\r\n8\r\n472.0\r\n205\r\n2.93\r\n5.250\r\n17.98\r\n0\r\n0\r\n3\r\n4\r\nLincoln Continental\r\n10.4\r\n8\r\n460.0\r\n215\r\n3.00\r\n5.424\r\n17.82\r\n0\r\n0\r\n3\r\n4\r\nChrysler Imperial\r\n14.7\r\n8\r\n440.0\r\n230\r\n3.23\r\n5.345\r\n17.42\r\n0\r\n0\r\n3\r\n4\r\nDodge Challenger\r\n15.5\r\n8\r\n318.0\r\n150\r\n2.76\r\n3.520\r\n16.87\r\n0\r\n0\r\n3\r\n2\r\nAMC Javelin\r\n15.2\r\n8\r\n304.0\r\n150\r\n3.15\r\n3.435\r\n17.30\r\n0\r\n0\r\n3\r\n2\r\nCamaro Z28\r\n13.3\r\n8\r\n350.0\r\n245\r\n3.73\r\n3.840\r\n15.41\r\n0\r\n0\r\n3\r\n4\r\nPontiac Firebird\r\n19.2\r\n8\r\n400.0\r\n175\r\n3.08\r\n3.845\r\n17.05\r\n0\r\n0\r\n3\r\n2\r\nFord Pantera L\r\n15.8\r\n8\r\n351.0\r\n264\r\n4.22\r\n3.170\r\n14.50\r\n0\r\n1\r\n5\r\n4\r\nMaserati Bora\r\n15.0\r\n8\r\n301.0\r\n335\r\n3.54\r\n3.570\r\n14.60\r\n0\r\n1\r\n5\r\n8\r\n\r\nGrafico\r\n\r\n\r\n\r\nFigure 1: Grafico de base mtcars\r\n\r\n\r\n\r\nCódigo em linha\r\nHoje é o dia… 2022-01-01\r\n\r\n\r\n\r\n",
+    "preview": "posts/2022-01-01-analise-da-base-rais/analise-da-base-rais_files/figure-html5/unnamed-chunk-4-1.png",
+    "last_modified": "2022-01-01T19:16:02-03:00",
     "input_file": "analise-da-base-rais.knit.md"
   },
   {

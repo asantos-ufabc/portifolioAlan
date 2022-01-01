@@ -41,9 +41,8 @@ list.files(all.files = TRUE)
 
 
 # criar o blog
-
-install.packages("distill")
-library(distill)
-
 distill::create_blog(".", "Portifolio do Alan Santos", gh_pages = TRUE)
 
+# criar um post
+
+distill::create_post("Analise da base RAIS")

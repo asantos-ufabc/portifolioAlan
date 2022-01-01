@@ -12,11 +12,55 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Este é o meu primeiro portifolio.
+# bold
+Este é o meu **primeiro portifolio**.
+
+# riscado
+~~atalho~~
+
+# inserir formato código
+formatar um texto como código: `usethis::use_git()`
 
 
+# link site
+como colocar um link: [Blog Curso-R](https://blog.curso-r.com/)
+
+
+# imagens
+![Meme do Drake falando...](https://blog.curso-r.com/images/posts/banner/API-drake.jpeg)
+
+
+```{r, echo=TRUE}
+# aqui a gente coloca o códido em R
+1 + 1
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Tabela
+
+```{r}
+
+library(tidyverse)
+mtcars %>% 
+        filter(cyl > 6) %>% 
+        knitr::kable()
+```
+
+Grafico 
+
+
+```{r, out.width="90%", fig.align='center', dpi = 300, fig.cap="Grafico de base mtcars", layout = "l-body-outset"}
+plot(mtcars$mpg, mtcars$hp)
+```
+
+
+# Código em linha
+
+Hoje é o dia... `r Sys.Date()`
