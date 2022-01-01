@@ -1,0 +1,22 @@
+---
+title: "Análise da base RAIS"
+description: |
+  Esta análise teve como objetivo analisar os salários na base da RAIS.
+  
+author:
+  - name: Alan Santos
+
+date: "`r format(Sys.time(), '%d %b, %Y')`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Este é o meu primeiro portifolio.
+
+
