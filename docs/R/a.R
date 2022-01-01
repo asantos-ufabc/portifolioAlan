@@ -27,23 +27,4 @@ usethis::use_git()
 
 #
 usethis::use_github()
-
-
-#
-usethis::use_github_pages("master", "/docs")
-
-
-#
-file.create(".nojekylll")
-
-#
-list.files(all.files = TRUE)
-
-
-# criar o blog
-
-install.packages("distill")
-library(distill)
-
-distill::create_blog(".", "Portifolio do Alan Santos", gh_pages = TRUE)
-
+1

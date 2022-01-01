@@ -1,0 +1,20 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this blog",
+      "description": "Some additional details about the blog",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-01-01T17:52:42-03:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Portifolio do Alan Santos",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-01-01T17:52:44-03:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
