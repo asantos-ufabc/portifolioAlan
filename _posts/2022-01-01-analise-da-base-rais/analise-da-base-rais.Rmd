@@ -5,7 +5,7 @@ description: |
   
 author:
   - name: Alan Santos
-
+theme: semanadsp.css
 date: "`r format(Sys.time(), '%d %b, %Y')`"
 output:
   distill::distill_article:
@@ -43,7 +43,16 @@ Segue abaixo,  o código que carrega as primeiras 5 linhas da tabela de microdad
 ```
 
 
-```{r, cache=TRUE}
+```{r, cache=TRUE, eval = FALSE}
+
+codigos_cbo <- c(
+        "252515", "252525" , "211110",
+        # pesquisa/cientista
+        "211205", "411035",
+        "211210", "131120", "211215"
+        # ocupaçoes estatisticas
+)
+
 # usando SGDB (máquina - processa e envia os dados)
 conexao <- dbConnect(
         bigquery(), 
@@ -56,12 +65,18 @@ conexao <- dbConnect(
 
 bigrquery::bq_auth("alanferreirasantos37@gmail.com")
 
-base <- tbl(conexao, "microdados_vinculos") %>% 
+base_tbl <- tbl(conexao, "microdados_vinculos") %>% 
         select(everything()) %>% 
-        head(5) %>% 
-        collect()
+        filter(
+                ano >= 2013 & cbo_2002 %in% c(codigos_cbo)
+        ) 
 
-base
+
+tabela_microdados_vinculos <- collect(base_tbl)
+
+saveRDS(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
+
+ 
 ```
 
 A base de dados que queremos analisar aqui é a base de pessoas que (pontencialmente) trabalham com ciência de dados. Existe um código brasileiro de ocupações (CBO), que 
@@ -73,27 +88,26 @@ Pergunta principal da pesquisa:
 
 ```{r}
 
-codigos_cbo <- c(
-        "252515", "252525" , "211110",
+#codigos_cbo <- c(
+#        "252515", "252525" , "211110",
         # pesquisa/cientista
-        "211205", "411035",
-        "211210", "131120", "211215"
+#        "211205", "411035",
+#        "211210", "131120", "211215"
         # ocupaçoes estatisticas
 )
 
 
-microdados_tbl <- tbl(conexao, "microdados_vinculos") %>% 
-        select(everything()) %>% 
-        filter(
-                ano >= 2013 & cbo_2002 %in% c(codigos_cbo)
-        ) %>% 
-        head(n = 5000)
+#microdados_tbl <- tbl(conexao, "microdados_vinculos") %>% 
+#        select(everything()) %>% 
+#        filter(
+#                ano >= 2013 & cbo_2002 %in% c(codigos_cbo)
+#        ) %>% 
+#        head()
 
-tabela_microdados_vinculos <- collect(microdados_tbl)
+#tabela_microdados_vinculos <- collect(microdados_tbl)
 
-saveRDS(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
+#saveRDS(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
 
-#readr::write_rds(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
 
 ```
 
@@ -118,13 +132,15 @@ Como variam os salários médios no tempo?
 
 tabela_microdados_vinculos <- readRDS("tabela_microdados_vinculos.rds")
 
+View(tabela_microdados_vinculos)
+
 library(ggplot2)
 
 tabela_medias <- tabela_microdados_vinculos %>% 
         group_by(ano) %>% 
         summarise(media_salario = mean(valor_remuneracao_media))
 
-ggplot(tabela_microdados_vinculos) +
+ggplot(tabela_medias) +
         aes(x = ano, y = media_salario) +
         geom_col() +
         scale_x_continuous(breaks = 2013:2019)
@@ -143,8 +159,8 @@ tabela_medias %>%
 ```
 
 ```{r}
-#readr::write_rds(tabela_microdados_vinculos, 
-#                 "tabela_microdados_vinculos.rds" ,compress = "xz")
+readr::write_rds(tabela_microdados_vinculos, 
+                 "tabela_microdados_vinculos.rds" ,compress = "xz")
 
 ```
 
@@ -186,7 +202,7 @@ tabela_media_uf %>%
         mutate(
                sigla_uf = fct_reorder(sigla_uf, media_uf) 
         ) %>% 
-        ggplot(aes(y = sigla_uf, x = media_uf)) %>% 
+        ggplot(aes(y = sigla_uf, x = media_uf)) +
         geom_col() +
         labs(
                 y = "Unidade da Federação",
@@ -224,7 +240,7 @@ tabela_mediana_uf %>%
       mutate(
                sigla_uf = fct_reorder(sigla_uf, mediana_uf) 
         ) %>% 
-        ggplot(aes(y = sigla_uf, x = mediana_uf)) %>% 
+        ggplot(aes(y = sigla_uf, x = mediana_uf)) +
         geom_col() +
         labs(
                 y = "Unidade da Federação",
@@ -288,6 +304,17 @@ tabela_resumo_sexo_raca_cor %>%
 ggplot(tabela_resumo_sexo_raca_cor,
        aes(x = raca_cor, y = media, fill = sexo)) +
         geom_col(Position = "dodge")
+
+```
+
+
+## Regressao linear
+
+```{r}
+
+lm(valor_remuneracao_media ~ sexo, data = tabela_microdados_vinculos)
+
+lm(valor_remuneracao_media ~ sexo + raca_cor, data = tabela_microdados_vinculos)
 
 ```
 
