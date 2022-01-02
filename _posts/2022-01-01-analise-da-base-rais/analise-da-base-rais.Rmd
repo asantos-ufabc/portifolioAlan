@@ -90,5 +90,25 @@ microdados_tbl <- tbl(conexao, "microdados_vinculos") %>%
         head(n = 5000)
 
 tabela_microdados_vinculos <- collect(microdados_tbl)
+
+readr::write_rds(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
+
 ```
+
+
+## Perguntas
+
+Quanto ganha uma pessoa que trabalha com ciência de dados?
+
+Perguntas secundárias
+- Quanto o valor varia (médio) no tempo?
+- Quanto o valor varia regionalmente?
+- Quanto o valor varia por característica das pessoas
+        - Gênero
+        - etnia
+        - idade
+- [Desafio] Qual cargo tem a maior taxa de crescimento dentro daquele setor da economia (CNAE)
+proporcionalmente a municipios com mais pessoas empregadas naquela CBO.
+
+
 
