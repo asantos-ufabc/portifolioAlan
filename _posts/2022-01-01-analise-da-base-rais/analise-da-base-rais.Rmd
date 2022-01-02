@@ -74,7 +74,10 @@ base_tbl <- tbl(conexao, "microdados_vinculos") %>%
 
 tabela_microdados_vinculos <- collect(base_tbl)
 
-saveRDS(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
+
+readr::write_rds(tabela_microdados_vinculos, 
+                 "tabela_microdados_vinculos.rds" ,compress = "xz")
+
 
  
 ```
@@ -94,7 +97,7 @@ Pergunta principal da pesquisa:
 #        "211205", "411035",
 #        "211210", "131120", "211215"
         # ocupaçoes estatisticas
-)
+#)
 
 
 #microdados_tbl <- tbl(conexao, "microdados_vinculos") %>% 
@@ -158,11 +161,7 @@ tabela_medias %>%
         
 ```
 
-```{r}
-readr::write_rds(tabela_microdados_vinculos, 
-                 "tabela_microdados_vinculos.rds" ,compress = "xz")
 
-```
 
 ### Quanto o valor varia regionalmente?
 
