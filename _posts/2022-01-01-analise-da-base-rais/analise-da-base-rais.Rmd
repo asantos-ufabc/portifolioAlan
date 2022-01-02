@@ -135,8 +135,6 @@ Como variam os salários médios no tempo?
 
 tabela_microdados_vinculos <- readRDS("tabela_microdados_vinculos.rds")
 
-View(tabela_microdados_vinculos)
-
 library(ggplot2)
 
 tabela_medias <- tabela_microdados_vinculos %>% 
@@ -146,7 +144,9 @@ tabela_medias <- tabela_microdados_vinculos %>%
 ggplot(tabela_medias) +
         aes(x = ano, y = media_salario) +
         geom_col() +
-        scale_x_continuous(breaks = 2013:2019)
+        scale_x_continuous(breaks = 2013:2019) +
+        ggthemes::theme_fivethirtyeight()
+        
 ```
 
 
@@ -206,7 +206,8 @@ tabela_media_uf %>%
         labs(
                 y = "Unidade da Federação",
                 x = "Média Salarial (R$)"
-        )
+        )+
+        ggthemes::theme_fivethirtyeight()
 
 ```
 
@@ -244,7 +245,8 @@ tabela_mediana_uf %>%
         labs(
                 y = "Unidade da Federação",
                 x = "Média Salarial (R$)"
-        )
+        )+
+        ggthemes::theme_fivethirtyeight()
 
 
 ```
@@ -302,18 +304,46 @@ tabela_resumo_sexo_raca_cor %>%
 
 ggplot(tabela_resumo_sexo_raca_cor,
        aes(x = raca_cor, y = media, fill = sexo)) +
-        geom_col(Position = "dodge")
+        geom_col(position = "dodge") +
+        labs(
+                x = "Raça e Cor",
+                y = "Salário Médio em Reais (R$)"
+        ) +
+        ggthemes::theme_fivethirtyeight()
 
 ```
 
 
-## Regressao linear
+## Regressão linear
 
 ```{r}
 
 lm(valor_remuneracao_media ~ sexo, data = tabela_microdados_vinculos)
 
 lm(valor_remuneracao_media ~ sexo + raca_cor, data = tabela_microdados_vinculos)
+
+```
+
+
+## Regressão linear múltipla
+
+```{r}
+
+
+
+```
+
+
+
+### Qual é a diferença dos salários da base?
+
+```{r}
+
+tabela_microdados_vinculos %>% 
+        filter(valor_remuneracao_media > 0) %>% 
+        ggplot(aes(x = log(valor_remuneracao_media))) +
+        geom_histogram() +
+        facet_wrap(~ cbo_2002)
 
 ```
 
