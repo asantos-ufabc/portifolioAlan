@@ -36,9 +36,9 @@ Segue abaixo,  o código que carrega as primeiras 5 linhas da tabela de microdad
 
 ```{r}
 # ler um arquivo
-tab_normal <- read.csv("https://raw.githubusercontent.com/curso-r/main-r4ds-1/master/dados/imdb.csv")
+#tab_normal <- read.csv("https://raw.githubusercontent.com/curso-r/main-r4ds-1/master/dad#os/imdb.csv")
 
-head(tab_normal, n = 5)
+#head(tab_normal, n = 5)
 
 ```
 
@@ -49,15 +49,46 @@ conexao <- dbConnect(
         bigquery(), 
         project = "basedosdados",
         dataset = "br_me_rais",
-        billing = "semanadsp"
+        billing = "semanads-337000"
 )
 
 # conexao simples entre o r e a tabela do google(robo)
 
-base <- collect(select(tbl(conexao, "microdados_vinculos"),
-everything(), 5))
+bigrquery::bq_auth("alanferreirasantos37@gmail.com")
+
+base <- tbl(conexao, "microdados_vinculos") %>% 
+        select(everything()) %>% 
+        head(5) %>% 
+        collect()
+
+base
+```
+
+A base de dados que queremos analisar aqui é a base de pessoas que (pontencialmente) trabalham com ciência de dados. Existe um código brasileiro de ocupações (CBO), que 
+tem um cadastro de todas as ocupações formais do brasil. Vamos pegar alguns códigos que são relacionados a ciência de dados e filtrar a base da RAIS para obter os dados
+
+Pergunta principal da pesquisa: 
+
+> quanto uma pessoa que trabalha com ciência de dados ganha?
+
+```{r}
+
+codigos_cbo <- c(
+        "252515", "252525" , "211110",
+        # pesquisa/cientista
+        "211205", "411035",
+        "211210", "131120", "211215"
+        # ocupaçoes estatisticas
+)
 
 
-head(base)
+microdados_tbl <- tbl(conexao, "microdados_vinculos") %>% 
+        select(everything()) %>% 
+        filter(
+                ano >= 2013 & cbo_2002 %in% c(codigos_cbo)
+        ) %>% 
+        head(n = 5000)
+
+tabela_microdados_vinculos <- collect(microdados_tbl)
 ```
 
