@@ -16,51 +16,48 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# bold
-Este é o meu **primeiro portifolio**.
+Neste relatório estamos interessados em responder a pergunta:
 
-# riscado
-~~atalho~~
+"Quanto ganha um cientista de dados?"
 
-# inserir formato código
-formatar um texto como código: `usethis::use_git()`
+Para isso, vamos utilizar a base da RAIS anonimazada
 
+# Acessando os dados da RAIS
 
-# link site
-como colocar um link: [Blog Curso-R](https://blog.curso-r.com/)
+Vamos utilizar o [datalake da iniciativa base dos dados](https://basedosdados.org).
 
-
-# imagens
-![Meme do Drake falando...](https://blog.curso-r.com/images/posts/banner/API-drake.jpeg)
-
-
-```{r, echo=TRUE}
-# aqui a gente coloca o códido em R
-1 + 1
-```
-
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
+library(bigrquery)
 library(tidyverse)
 ```
 
-## Tabela
+
+Segue abaixo,  o código que carrega as primeiras 5 linhas da tabela de microdados
 
 ```{r}
+# ler um arquivo
+tab_normal <- read.csv("https://raw.githubusercontent.com/curso-r/main-r4ds-1/master/dados/imdb.csv")
 
-library(tidyverse)
-mtcars %>% 
-        filter(cyl > 6) %>% 
-        knitr::kable()
-```
+head(tab_normal, n = 5)
 
-Grafico 
-
-
-```{r, out.width="90%", fig.align='center', dpi = 300, fig.cap="Grafico de base mtcars", layout = "l-body-outset"}
-plot(mtcars$mpg, mtcars$hp)
 ```
 
 
-# Código em linha
+```{r, cache=TRUE}
+# usando SGDB (máquina - processa e envia os dados)
+conexao <- dbConnect(
+        bigquery(), 
+        project = "basedosdados",
+        dataset = "br_me_rais",
+        billing = "semanadsp"
+)
 
-Hoje é o dia... `r Sys.Date()`
+# conexao simples entre o r e a tabela do google(robo)
+
+base <- collect(select(tbl(conexao, "microdados_vinculos"),
+everything(), 5))
+
+
+head(base)
+```
+

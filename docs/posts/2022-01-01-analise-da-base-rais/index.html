@@ -2102,263 +2102,56 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="d-article">
-<h1 id="bold">bold</h1>
-<p>Este é o meu <strong>primeiro portifolio</strong>.</p>
-<h1 id="riscado">riscado</h1>
-<p><del>atalho</del></p>
-<h1 id="inserir-formato-código">inserir formato código</h1>
-<p>formatar um texto como código: <code>usethis::use_git()</code></p>
-<h1 id="link-site">link site</h1>
-<p>como colocar um link: <a href="https://blog.curso-r.com/">Blog Curso-R</a></p>
-<h1 id="imagens">imagens</h1>
-<figure>
-<img src="https://blog.curso-r.com/images/posts/banner/API-drake.jpeg" alt="Meme do Drake falando…" /><figcaption aria-hidden="true">Meme do Drake falando…</figcaption>
-</figure>
+<p>Neste relatório estamos interessados em responder a pergunta:</p>
+<p>“Quanto ganha um cientista de dados?”</p>
+<p>Para isso, vamos utilizar a base da RAIS anonimazada</p>
+<h1 id="acessando-os-dados-da-rais">Acessando os dados da RAIS</h1>
+<p>Vamos utilizar o <a href="https://basedosdados.org">datalake da iniciativa base dos dados</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># aqui a gente coloca o códido em R</span>
-<span class='fl'>1</span> <span class='op'>+</span> <span class='fl'>1</span>
-</code></pre>
+
 </div>
-<pre><code>[1] 2</code></pre>
+<p>Segue abaixo, o código que carrega as primeiras 5 linhas da tabela de microdados</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>                                      titulo  ano           diretor
+1                                   AvatarÂ  2009     James Cameron
+2 Pirates of the Caribbean: At World&#39;s EndÂ  2007    Gore Verbinski
+3                    The Dark Knight RisesÂ  2012 Christopher Nolan
+4                              John CarterÂ  2012    Andrew Stanton
+5                             Spider-Man 3Â  2007         Sam Raimi
+  duracao   cor                         generos pais
+1     178 Color Action|Adventure|Fantasy|Sci-Fi  USA
+2     169 Color        Action|Adventure|Fantasy  USA
+3     164 Color                 Action|Thriller  USA
+4     132 Color         Action|Adventure|Sci-Fi  USA
+5     156 Color        Action|Adventure|Romance  USA
+        classificacao orcamento   receita nota_imdb likes_facebook
+1 A partir de 13 anos 237000000 760505847       7.9          33000
+2 A partir de 13 anos 300000000 309404152       7.1              0
+3 A partir de 13 anos 250000000 448130642       8.5         164000
+4 A partir de 13 anos 263700000  73058679       6.6          24000
+5 A partir de 13 anos 258000000 336530303       6.2              0
+        ator_1           ator_2               ator_3
+1  CCH Pounder Joel David Moore            Wes Studi
+2  Johnny Depp    Orlando Bloom       Jack Davenport
+3    Tom Hardy   Christian Bale Joseph Gordon-Levitt
+4 Daryl Sabara  Samantha Morton         Polly Walker
+5 J.K. Simmons     James Franco        Kirsten Dunst</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-</code></pre>
+<pre><code># Source:   lazy query [?? x 66]
+# Database: BigQueryConnection
+# ... with 66 variables: ano &lt;int64&gt;, sigla_uf &lt;chr&gt;,
+#   id_municipio &lt;chr&gt;, tipo_vinculo &lt;chr&gt;,
+#   vinculo_ativo_3112 &lt;int64&gt;, tipo_admissao &lt;chr&gt;,
+#   mes_admissao &lt;int64&gt;, mes_desligamento &lt;int64&gt;,
+#   motivo_desligamento &lt;chr&gt;, causa_desligamento_1 &lt;chr&gt;,
+#   causa_desligamento_2 &lt;chr&gt;, causa_desligamento_3 &lt;chr&gt;,
+#   faixa_tempo_emprego &lt;chr&gt;, tempo_emprego &lt;dbl&gt;, ...</code></pre>
+<pre><code>&lt;BigQueryConnection&gt;
+  Dataset: basedosdados.br_me_rais
+  Billing: semanadsp</code></pre>
 </div>
-</div>
-<h2 id="tabela">Tabela</h2>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">mpg</th>
-<th style="text-align: right;">cyl</th>
-<th style="text-align: right;">disp</th>
-<th style="text-align: right;">hp</th>
-<th style="text-align: right;">drat</th>
-<th style="text-align: right;">wt</th>
-<th style="text-align: right;">qsec</th>
-<th style="text-align: right;">vs</th>
-<th style="text-align: right;">am</th>
-<th style="text-align: right;">gear</th>
-<th style="text-align: right;">carb</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Hornet Sportabout</td>
-<td style="text-align: right;">18.7</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">360.0</td>
-<td style="text-align: right;">175</td>
-<td style="text-align: right;">3.15</td>
-<td style="text-align: right;">3.440</td>
-<td style="text-align: right;">17.02</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Duster 360</td>
-<td style="text-align: right;">14.3</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">360.0</td>
-<td style="text-align: right;">245</td>
-<td style="text-align: right;">3.21</td>
-<td style="text-align: right;">3.570</td>
-<td style="text-align: right;">15.84</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Merc 450SE</td>
-<td style="text-align: right;">16.4</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">275.8</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">3.07</td>
-<td style="text-align: right;">4.070</td>
-<td style="text-align: right;">17.40</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Merc 450SL</td>
-<td style="text-align: right;">17.3</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">275.8</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">3.07</td>
-<td style="text-align: right;">3.730</td>
-<td style="text-align: right;">17.60</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Merc 450SLC</td>
-<td style="text-align: right;">15.2</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">275.8</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">3.07</td>
-<td style="text-align: right;">3.780</td>
-<td style="text-align: right;">18.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cadillac Fleetwood</td>
-<td style="text-align: right;">10.4</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">472.0</td>
-<td style="text-align: right;">205</td>
-<td style="text-align: right;">2.93</td>
-<td style="text-align: right;">5.250</td>
-<td style="text-align: right;">17.98</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Lincoln Continental</td>
-<td style="text-align: right;">10.4</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">460.0</td>
-<td style="text-align: right;">215</td>
-<td style="text-align: right;">3.00</td>
-<td style="text-align: right;">5.424</td>
-<td style="text-align: right;">17.82</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Chrysler Imperial</td>
-<td style="text-align: right;">14.7</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">440.0</td>
-<td style="text-align: right;">230</td>
-<td style="text-align: right;">3.23</td>
-<td style="text-align: right;">5.345</td>
-<td style="text-align: right;">17.42</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Dodge Challenger</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">318.0</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">2.76</td>
-<td style="text-align: right;">3.520</td>
-<td style="text-align: right;">16.87</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AMC Javelin</td>
-<td style="text-align: right;">15.2</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">304.0</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">3.15</td>
-<td style="text-align: right;">3.435</td>
-<td style="text-align: right;">17.30</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Camaro Z28</td>
-<td style="text-align: right;">13.3</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">350.0</td>
-<td style="text-align: right;">245</td>
-<td style="text-align: right;">3.73</td>
-<td style="text-align: right;">3.840</td>
-<td style="text-align: right;">15.41</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pontiac Firebird</td>
-<td style="text-align: right;">19.2</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">400.0</td>
-<td style="text-align: right;">175</td>
-<td style="text-align: right;">3.08</td>
-<td style="text-align: right;">3.845</td>
-<td style="text-align: right;">17.05</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ford Pantera L</td>
-<td style="text-align: right;">15.8</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">351.0</td>
-<td style="text-align: right;">264</td>
-<td style="text-align: right;">4.22</td>
-<td style="text-align: right;">3.170</td>
-<td style="text-align: right;">14.50</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Maserati Bora</td>
-<td style="text-align: right;">15.0</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">301.0</td>
-<td style="text-align: right;">335</td>
-<td style="text-align: right;">3.54</td>
-<td style="text-align: right;">3.570</td>
-<td style="text-align: right;">14.60</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">8</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Grafico</p>
-<div class="layout-chunk" data-layout="l-body-outset">
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="analise-da-base-rais_files/figure-html5/unnamed-chunk-4-1.png" alt="Grafico de base mtcars" width="90%" />
-<p class="caption">
-Figure 1: Grafico de base mtcars
-</p>
-</div>
-</div>
-<h1 id="código-em-linha">Código em linha</h1>
-<p>Hoje é o dia… 2022-01-01</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
